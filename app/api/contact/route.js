@@ -1,7 +1,5 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const esc = (s = "") =>
   String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
@@ -12,6 +10,15 @@ export async function POST(req) {
     return Response.json({ error: "Missing fields" }, { status: 400 });
   }
 
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    return Response.json(
+      { error: "Contact service is temporarily unavailable" },
+      { status: 503 }
+    );
+  }
+
+  const resend = new Resend(apiKey);
   const { error } = await resend.emails.send({
     from: "onboarding@resend.dev",
     to: "momenalberann6@gmail.com",
