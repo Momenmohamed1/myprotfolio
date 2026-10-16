@@ -1,0 +1,5 @@
+export {default as HeroSection} from "./_components/HeroSection/HeroSection.jsx"
+export {default as AboutMe} from "./_components/About me/AboutMe.jsx"
+export {default as Skills} from "./_components/Skills/Skills.jsx"
+export {default as Prtojects} from "./_components/Projects/Prtojects.jsx"
+export {default as ConnectMe} from "./_components/ConnectMe/ConnectMe.jsx"
